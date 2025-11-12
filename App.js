@@ -5,7 +5,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import MainScreen from './screens/MainScreen';
 import ProductDetailsScreen from './screens/ProductDetailsScreen';
-
+import { PaperProvider } from 'react-native-paper';
 
 
 
@@ -49,9 +49,10 @@ function App() {
   const RootStack = createNativeStackNavigator();
   
   return (
-    <NavigationContainer >
-      <SafeAreaProvider>
-        <RootStack.Navigator initialRouteName="Auth" screenOptions={{ headerShown: false }}>
+    <PaperProvider>
+      <NavigationContainer >
+        <SafeAreaProvider>
+          <RootStack.Navigator initialRouteName="Auth" screenOptions={{ headerShown: false }}>
 
           <RootStack.Screen name="Auth" component={AuthStackScreen} />
           <RootStack.Screen name="Main" component={MainStackScreen} />
@@ -60,6 +61,7 @@ function App() {
         </RootStack.Navigator>
       </SafeAreaProvider>
     </NavigationContainer>
+    </PaperProvider>
   );
 }
 
