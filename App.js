@@ -1,68 +1,20 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { PaperProvider, ActivityIndicator } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import MainScreen from './screens/MainScreen';
-import ProductDetailsScreen from './screens/ProductDetailsScreen';
+import { store, persistor } from './redux/store';
+import AppContent from './AppContent';
 
-
-
-
-const AuthStack = createNativeStackNavigator();
-
-function AuthStackScreen() {
+export default function App() {
   return (
-    <AuthStack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-      <AuthStack.Screen name="Login" component={LoginScreen} />
-      <AuthStack.Screen name="Register" component={RegisterScreen} />
-    </AuthStack.Navigator>
+    <Provider store={store}>
+      <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
+        <PaperProvider>
+          <SafeAreaProvider>
+            <AppContent /> {/* Main app content with navigation */}
+          </SafeAreaProvider>
+        </PaperProvider>
+      </PersistGate>
+    </Provider>
   );
 }
-
-
-
-const MainStack = createNativeStackNavigator();
-
-function MainStackScreen() {
-  return (
-    <MainStack.Navigator initialRouteName="MainScreen" screenOptions={{ headerShown: false }}>
-      <MainStack.Screen name="MainScreen" component={MainScreen} />
-      <MainStack.Screen name="ProductDetailsScreen"  component={ProductDetailsScreen}           options={
-          { presentation: 'fullScreenModal',
-          animation: 'slide_from_bottom',headerShown: true }}/>
-    </MainStack.Navigator>
-  );
-}
-
-
-
-
-
-
-
-
-
-
-function App() {
-  
-  const RootStack = createNativeStackNavigator();
-  
-  return (
-    <NavigationContainer >
-      <SafeAreaProvider>
-        <RootStack.Navigator initialRouteName="Auth" screenOptions={{ headerShown: false }}>
-
-          <RootStack.Screen name="Auth" component={AuthStackScreen} />
-          <RootStack.Screen name="Main" component={MainStackScreen} />
-
-
-        </RootStack.Navigator>
-      </SafeAreaProvider>
-    </NavigationContainer>
-  );
-}
-
-
-
-export default App;
