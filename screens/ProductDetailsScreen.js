@@ -3,7 +3,6 @@ import { ScrollView, Image, StyleSheet, View } from 'react-native';
 import { Card, Text, Button, Chip, useTheme,ActivityIndicator } from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 const ProductDetailsScreen = ({ route, navigation }) => {
 
     
@@ -40,45 +39,45 @@ const ProductDetailsScreen = ({ route, navigation }) => {
 
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fafafa' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.secondaryContainer }}>
       <ScrollView>
-        <Card style={styles.card} elevation={3}>
+        <Card style={styles(colors).card}>
           {/* 🖼 Product Image */}
-          <Image source={{ uri: product.image }} style={styles.image} resizeMode="contain" />
+          <Image source={{ uri: product.image }} style={styles(colors).image} resizeMode="contain" />
         <Card.Content>
           {/* 🏷 Title */}
-          <Text variant="titleLarge" style={styles.title}>
+          <Text variant="titleLarge" style={styles(colors).title}>
             {product.title}
           </Text>
 
           {/* 📦 Category */}
           <Chip
             icon="tag-outline"
-            style={styles.chip}
+            style={styles(colors).chip}
             textStyle={{ fontSize: 13 }}
           >
             {product.category}
           </Chip>
 
           {/* 💰 Price */}
-          <View style={styles.row}>
+          <View style={styles(colors).row}>
             <MaterialCommunityIcons name="currency-usd" size={22} color={colors.primary} />
-            <Text style={[styles.price, { color: colors.primary }]}>${product.price}</Text>
+            <Text style={[styles(colors).price]}>{product.price}</Text>
           </View>
 
           {/* ⭐ Rating */}
-          <View style={styles.row}>
+          <View style={styles(colors).row}>
             <MaterialCommunityIcons name="star" size={22} color="#FFD700" />
-            <Text style={styles.rating}>
+            <Text style={styles(colors).rating}>
               {product.rating.rate} / 5 ({product.rating.count} reviews)
             </Text>
           </View>
 
           {/* 📝 Description */}
-          <Text style={styles.description}>{product.description}</Text>
+          <Text style={styles(colors).description}>{product.description}</Text>
         </Card.Content>
 
-        <Card.Actions style={styles.actions}>
+        <Card.Actions style={styles(colors).actions}>
           <Button
             mode="outlined"
             onPress={() => navigation.goBack()}
@@ -105,25 +104,35 @@ const ProductDetailsScreen = ({ route, navigation }) => {
 
 
 
-const styles = StyleSheet.create({
+
+export default ProductDetailsScreen;
+
+
+const styles = (colors) =>
+  StyleSheet.create({
   card: {
     margin: 16,
     borderRadius: 16,
+    elevation: 4,
+    backgroundColor: colors.surface,
     overflow: 'hidden',
   },
   image: {
+    marginTop: 16,
     width: '100%',
     height: 280,
-    backgroundColor: '#fff',
   },
   title: {
     fontWeight: 'bold',
-    marginTop: 16,
+    marginTop: 26,
     marginBottom: 6,
+    color: colors.onSurface,
   },
   chip: {
-    alignSelf: 'flex-start',
-    marginBottom: 12,
+    marginVertical: 8,
+    width: '100%',
+    paddingVertical: 4,
+    backgroundColor: colors.primaryContainer,
   },
   row: {
     flexDirection: 'row',
@@ -134,23 +143,23 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginLeft: 6,
+    color: colors.primary,
   },
   rating: {
     fontSize: 15,
     marginLeft: 6,
-    color: '#555',
+    color: colors.onSurface,
   },
   description: {
     marginTop: 12,
     fontSize: 15,
     lineHeight: 22,
-    color: '#444',
+    color: colors.onSurface,
   },
   actions: {
     justifyContent: 'flex-end',
     paddingHorizontal: 16,
     marginBottom: 12,
+    marginTop: 20,
   },
 });
-
-export default ProductDetailsScreen;
