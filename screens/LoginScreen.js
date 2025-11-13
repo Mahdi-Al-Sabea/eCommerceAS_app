@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import {
   TextInput,
@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../redux/authSclice';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import serverIP from '../constants/serverIP';
 
 // 🔒 Yup validation schema
 const LoginSchema = Yup.object().shape({
@@ -55,7 +56,7 @@ export default function LoginScreen() {
               onSubmit={async (values, { setSubmitting }) => {
                 console.log('Logging in with:', values);
                 try {
-                  const response = await fetch('http://192.168.1.2:4000/auth/login', {
+                  const response = await fetch(`http://${serverIP}:4000/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(values),

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import {
   TextInput,
@@ -13,6 +13,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../redux/authSclice';
+import serverIP from '../constants/serverIP';
 
 // 🛡️ Yup Validation Schema
 const RegisterSchema = Yup.object().shape({
@@ -67,7 +68,7 @@ export default function RegisterScreen() {
               validateOnBlur
               onSubmit={async (values, { setSubmitting }) => {
                 try {
-                  const response = await fetch('http://192.168.1.2:4000/auth/signup', {
+                  const response = await fetch(`http://${serverIP}:4000/auth/signup`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

@@ -11,55 +11,6 @@ const ProductDetailsScreen = ({ route, navigation }) => {
   const { colors } = useTheme();
 
 
-  
-const styles = StyleSheet.create({
-  card: {
-    margin: 16,
-    borderRadius: 16,
-    overflow: 'hidden',
-  },
-  image: {
-    width: '100%',
-    height: 280,
-    backgroundColor: '#fff',
-  },
-  title: {
-    fontWeight: 'bold',
-    marginTop: 16,
-    marginBottom: 6,
-  },
-  chip: {
-    alignSelf: 'flex-start',
-    marginBottom: 12,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 4,
-  },
-  price: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginLeft: 6,
-  },
-  rating: {
-    fontSize: 15,
-    marginLeft: 6,
-    color: '#555',
-  },
-  description: {
-    marginTop: 12,
-    fontSize: 15,
-    lineHeight: 22,
-    color: '#444',
-  },
-  actions: {
-    justifyContent: 'flex-end',
-    paddingHorizontal: 16,
-    marginBottom: 12,
-  },
-});
-
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -149,5 +100,57 @@ const styles = StyleSheet.create({
   );
 }
 };
+
+
+
+
+
+const styles = StyleSheet.create({
+  card: {
+    margin: 16,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  image: {
+    width: '100%',
+    height: 280,
+    backgroundColor: '#fff',
+  },
+  title: {
+    fontWeight: 'bold',
+    marginTop: 16,
+    marginBottom: 6,
+  },
+  chip: {
+    alignSelf: 'flex-start',
+    marginBottom: 12,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 4,
+  },
+  price: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 6,
+  },
+  rating: {
+    fontSize: 15,
+    marginLeft: 6,
+    color: '#555',
+  },
+  description: {
+    marginTop: 12,
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#444',
+  },
+  actions: {
+    justifyContent: 'flex-end',
+    paddingHorizontal: 16,
+    marginBottom: 12,
+  },
+});
 
 export default ProductDetailsScreen;

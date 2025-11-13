@@ -39,17 +39,14 @@ function MainStackScreen() {
 }
 
 export default function AppContent() {
-  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.auth); // get auth state from Redux 
 
-  useEffect(() => {
-    console.log('Auth changed:', isAuthenticated);
-  }, [isAuthenticated]);
 
   return (
     <NavigationContainer>
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
         
-        {isAuthenticated ? (
+        {isAuthenticated ? ( // if authenticated, show main app else auth screens
           <RootStack.Screen name="Main" component={MainStackScreen} />
         ) : (
           <RootStack.Screen name="Auth" component={AuthStackScreen} />
