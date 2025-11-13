@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useEffect,useState } from "react";
 import WeatherCard from "../Components/WeatherComponent";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/authSclice";
 
 function MainScreen() {
 
@@ -13,6 +15,7 @@ function MainScreen() {
     const [products, setProducts] = useState([]);
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         fetchProducts();
@@ -26,10 +29,16 @@ function MainScreen() {
         console.log(data);
         setProducts(data); 
         } catch (error) {
-            
+            console.error('Error fetching products:', error);
         }
 
     };
+
+
+    const handleLogout = async () => {
+        dispatch(logout());
+       
+    }
 
 
 const styles = StyleSheet.create({
@@ -59,7 +68,7 @@ const styles = StyleSheet.create({
                      
                 </Card>
             ))}
-            <Button style={styles.button} mode="contained" onPress={() => {navigation.replace('Auth')}}>Logout</Button>
+            <Button style={styles.button} mode="contained" onPress={handleLogout}>Logout</Button>
             
            </ScrollView>
         </SafeAreaView>
