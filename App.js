@@ -11,7 +11,7 @@ export default function App() {
       <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
         <PaperProvider>
           <SafeAreaProvider>
-            <AppContent />
+            <AppContent /> {/* Main app content with navigation */}
           </SafeAreaProvider>
         </PaperProvider>
       </PersistGate>

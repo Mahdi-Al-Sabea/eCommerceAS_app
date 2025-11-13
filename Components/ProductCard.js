@@ -6,9 +6,6 @@ import { Card, Text, useTheme } from 'react-native-paper';
 export default function ProductCard({ item, onPress }) {
   const { colors } = useTheme();
 
-  useEffect(() => {
-    console.log('ProductCard rendered for item:', item.id);
-  }, []);
 
     return (
             <Card

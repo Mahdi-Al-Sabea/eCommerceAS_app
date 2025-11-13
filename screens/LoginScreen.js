@@ -14,6 +14,7 @@ import { loginSuccess } from '../redux/authSclice';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import serverIP from '../constants/serverIP';
+//formik and yup are packages used for form handling and validation
 
 // 🔒 Yup validation schema
 const LoginSchema = Yup.object().shape({

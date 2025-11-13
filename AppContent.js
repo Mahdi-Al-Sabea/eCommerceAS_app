@@ -38,7 +38,7 @@ function MainStackScreen() {
   );
 }
 
-export default function AppContent() {
+export default function AppContent() { // this component decides which stack to show based on auth state
   const { isAuthenticated } = useSelector((state) => state.auth); // get auth state from Redux 
 
 
